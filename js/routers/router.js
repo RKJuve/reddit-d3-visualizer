@@ -1,13 +1,20 @@
 define([
   'views/root',
-  'backbone'
-], function (RootView, Backbone) {
+  'backbone',
+  'underscore',
+  'collections/hot'
+], function (RootView, Backbone, _, FrontPageHotPosts) {
   return Backbone.Router.extend({
     routes: {
     	"": "index"
     },
     index: function() {
-    	console.log("index route hit")
+    	var frontPageHotPosts = new FrontPageHotPosts();
+    	frontPageHotPosts.fetch({
+    		success: function(res) {
+    			console.log(res);
+    		}
+    	});
     }
   });
 });

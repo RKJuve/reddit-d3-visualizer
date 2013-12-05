@@ -2,8 +2,8 @@
  
 var VIZ = {};
  
-VIZ.w = 700;
-VIZ.h = 400;
+VIZ.w = window.innerWidth-7;
+VIZ.h = window.innerHeight-7;
  
  // initialize "universe" of people
 var People = [
@@ -71,7 +71,7 @@ var force = d3.layout.force()
         // .links(dataset.edges)
         .size([VIZ.w, VIZ.h])
         .linkDistance([20])
-        .charge([-300]);
+        .charge([-433]);
 
 var drawGraph = function(graph) {
   force
@@ -99,7 +99,7 @@ var drawGraph = function(graph) {
       .attr("dx", "10px")
       .text(function(d) { return d.node; });
 
-  console.log(labels);
+
     
   force.on("tick", function() {
     link.attr("x1", function(d) { return d.source.x; })
