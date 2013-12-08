@@ -13,6 +13,14 @@ define([
     	frontPageHotPosts.fetch({
     		success: function(res) {
     			console.log(res);
+          _.each(res.models, function(elem, i) {
+            // console.log(elem);
+            D3dataset.nodes.push({
+              node: elem.attributes.title,
+              radius: (elem.attributes.score/25)
+            });
+          });
+          drawGraph(D3dataset);
     		}
     	});
     }
