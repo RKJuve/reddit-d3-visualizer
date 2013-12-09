@@ -17,7 +17,8 @@ define([
             // console.log(elem);
             D3dataset.nodes.push({
               node: elem.attributes.title,
-              radius: (elem.attributes.score/25)
+              radius: (elem.attributes.score/10),
+              link: elem.attributes.url
             });
           });
           drawGraph(D3dataset);

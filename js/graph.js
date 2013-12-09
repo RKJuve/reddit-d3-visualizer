@@ -120,22 +120,28 @@ var drawGraph = function(graph) {
   var gnodes = svg.selectAll('g.gnode')
      .data(graph.nodes)
      .enter()
-     .append('g')
+     .append('a')
+     .attr("xlink:href", function(d){ return d.link; })
      .classed('gnode', true);
     
   var node = gnodes.append("circle")
       .attr("class", "node")
       .attr("r", function(d) {
-        console.log(d);
         return d.radius;
       })
       .call(force.drag);
 
   var labels = gnodes.append("text")
-      .attr("dx", "10px")
-      .style("fill", "white")
+      .attr("text-anchor", "middle")
+      .style({
+        "fill": "white",
+        "stroke": "black",
+        "font-size": 28,
+        "width": "100px"
+      })
       .text(function(d) { return d.node; });
-    
+
+
   force.on("tick", function(e) {
     //redraw links
     link.attr("x1", function(d) { return d.source.x; })
